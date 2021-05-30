@@ -1,0 +1,122 @@
+                                          Unit-2 programming
+q1. write a shell script to count the character,lines and words in a file.
+
+Ans:-$ cat file1
+Good morning!
+Have a nice day!
+$ cat count.sh
+echo "Enter filename:"
+read file
+word=`cat $file | wc -w`
+character=`cat $ file | wc -c`
+lines=`grep -c "." $file`
+echo "Number of character=$character"
+echo "Number of words=$word"
+echo "Number of lines=$lines"
+
+o/p:- sh count.sh
+Enter filename:file1
+Number of character=31
+Number of words=6
+Number of lines=2
+
+q2.write a shell program to change all lower case letters in a file to upper case.
+
+Ans:-$ cat file1
+Hello
+How are you.
+$ cat change.sh
+clear
+echo "Menu"
+echo "1.Upper to lower."
+echo "2.Lower to upper."
+echo "3.Exit."
+echo "Enter your choice:"
+read ch
+case "$ch" in 1) echo"Enter file name:"
+read file
+if [-f $file ] then
+echo"Converting Upper to lower."
+tr '[A-Z]''[a-z]' <file
+else
+echo "$file not found."
+fi
+;;
+2) echo"Enter file name:"
+read file
+if [-f $file ] then
+echo"Converting lower to upper."
+tr '[a-z]''[A-Z]' <file
+else
+echo "$file not found."
+fi
+;;
+3) echo"Exiting...."
+exit;;
+esac
+$ sh change.sh
+Menu
+1.Upper to lower.
+2.Lower to upper.
+3.Exit.
+Enter your choice:1
+Enter file name:file1
+hello
+how are you.
+
+q3.Give command for the following:
+a. to print those lines of file in which pattern linux or Linux is available.
+ans:-sed -n '/linux/,Linux/p' file
+b.to rename a file
+ans:-mv oldfilename newfilename
+c.to copy the content of source file to destination file.
+ans:-cp sourcefilename destinationfilename
+d.list all the files whose name begin with a character 'M' and also store them in a file named 'newfile'
+ans:-ls M*>newfile
+e.to count the no of words,character and lines.
+ans:-wc filename
+f.to give read,write and execute permission to user,read and execute permission to group member and only read permission to other(absolute mode).
+ans:-chmod 754 filename
+g.to make permission for 'newfile' same as 'testfile'
+ans:-chmod `stat -c '%a' newfile` testfile
+
+q4.which command is used to sort the lines of data in reverse order.
+ans:-sort -r
+
+q5.write a shell script to count character,lines and words i a file.
+
+Ans:-clear
+echo "Enter file name:"
+read file
+echo "Total character="
+wc -c<$file
+echo "Total words="
+wc -w<$file
+echo "Total lines="
+line=`wc -l<$file`
+echo "$(($line+1))"
+
+q6.take two filename as argument and copy the content from source to destination.
+
+Ans:-if (( $# != 2 )) then
+print "invalid argument"
+exit
+fi
+if [[ ! -r $1 ]]then
+print"$2 write permission denied."
+fi
+if [[ -f $2 && ! -w $2 ]]then
+print"\"$2\" " "exist"
+print "you want to overwrite(Y/N)?"
+read ch
+if [[ $ch ="Y" ]]then
+ch=1
+while ((ch != 0))
+do
+while read m
+do
+print $m
+done<$1
+((ch=ch-1))
+done>$2
+print "succesfull"

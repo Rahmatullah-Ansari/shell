@@ -1,0 +1,144 @@
+                                                                                Unit-1 programming.
+q1.write a join command to join two files on the first field.
+
+Ans:- $ cat file1.txt
+10 rose
+20 birds
+40 horse
+50 dog
+$ cat file2.txt
+10 ram
+20 rom
+40 board
+50 pen
+$ join file1.txt file2.txt
+10 rose ram
+20 birds rom
+40 horse board
+50 dog pen
+
+q2.write a join command to join two files.Here use second field from the first file and the first field from the second file to join.
+
+Ans:-$ cat file1.txt
+ram 10 1
+rom 20 2
+board 40 4
+pen 50 5
+$ cat file2.txt
+rose 10 1
+birds 20 2
+horse 40 4
+dog 50 5
+$ cat join -1 2 -2 1 file1.txt file2.txt
+10 ram 1 rose 1
+20 rom 2 birds 2
+40 board 4 horse 4
+50 pen 5 dog 5
+
+q3.write a join command to select the required fields from the input files in the output.select first field from first file and second field from second file in the output.
+
+Ans:-$ cat file1.txt
+ram 10 1
+rom 20 2
+board 40 4
+pen 50 5
+$ cat file2.txt
+rose 10 1
+birds 20 2
+horse 40 4
+dog 50 5
+$ join -o 1.1 2.2 -1 2 -2 1 file1.txt file2.txt
+ram rose
+rom birds
+board horse
+pen dog
+
+q4.write a command to join two delimited files.
+
+Ans:-$ cat file1.txt
+ram:10
+rom:20
+board:40
+pen:50
+$ cat file2.txt
+10:rose
+20:birds
+40:horse
+50:dog
+$ join -t:-1 2 -2 1 file1.txt file2.txt
+10:ram:rose
+20:rom:birds
+40:board:horse
+50:pen:dog
+
+q5.write a command to ignore case when joining the files.
+
+Ans:-$ cat file1.txt
+hello,H
+best,b
+$ cat file2.txt
+hii,h
+better,B
+$ join -t,-i -1 2 -2 1 file1.txt file2.txt
+H,hello,hii
+b,best,better
+
+q6.write a join command to print the line which do not match the value in joining fields.
+
+Ans:-$ cat f1.txt
+hello 1
+hii 2
+she 3
+$ cat f2.txt
+hii 2
+she 3
+he 4
+$ join -a f1.txt f2.txt
+hello 1
+he 4
+
+q7.print non pairable lines from fist file in given two files.
+
+Ans:-$ cat f1.txt
+hello 1
+hii 2
+she 3
+$ cat f2.txt
+hii 2
+she 3
+he 4
+$ join -a 1 f1.txt f2.txt
+hello 1
+hii 2 2
+she 33
+
+q8.print non pairable lines from second file in a given two files.
+
+Ans:-$ cat f1.txt
+hello 1
+hii 2
+she 3
+$ cat f2.txt
+hii 2
+she 3
+he 4
+$ join -a 2 f1.txt f2.txt
+hii 2 2
+she 33
+he 4
+
+q9.print non pairable lines from second file in a given two files.
+
+Ans:-$ cat f1.txt
+hello 1
+hii 2
+she 3
+$ cat f2.txt
+hii 2
+she 3
+he 4
+$ join -a 1 -a 2 f1.txt f2.txt
+hello 1
+hii 2 2
+she 33
+he 4
